@@ -24,7 +24,7 @@ const SearchCard = ({
         />
       ) : (
         <img
-          src={`/public/No-Poster (1).png`}
+          src={`/public/No-Poster-Search.png`}
           alt={title}
           className="w-[60px] h-[90px] object-cover mr-3 rounded"
         />

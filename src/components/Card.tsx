@@ -1,37 +1,62 @@
-import { useState} from "react";
 import heart from '../assets/heart.svg';
 import full_heart from '../assets/full_heart.svg';
 
 interface CardProps {
+    id?: number;
     title: string;
     imageSrc: string;
     year?: number;
-    alt?: string;
     rating?: number;
+    isLiked?: boolean;
+    onToggleLike?: (id?: number) => void;
 }
 
-const Card = ({title, year, imageSrc, alt, rating}: CardProps) => {
-
-    const [liked, setLiked] = useState(false);
+const Card = ({id, title, year, imageSrc, rating, isLiked = false, onToggleLike}: CardProps) => {
 
   return (
-    <div className='flex flex-col border-amber-500 rounded-2xl items-start h-[400px] sm:h-[450px] md:h-[515px] bg-(--color-secondary)'>
-
-        <img className="w-full h-[280px] sm:h-[320px] md:h-[368px] object-cover rounded-2xl shrink-0" src={imageSrc} alt={alt} />
+    <div className='flex flex-col rounded-2xl w-full max-w-[280px] bg-(--color-secondary)'>
+        {/* Fixed aspect ratio image container */}
+        <div className="w-full aspect-2/3 rounded-t-2xl overflow-hidden bg-gray-800 shrink-0">
+          {imageSrc ? 
+            <img 
+              className="w-full h-full object-cover" 
+              src={`https://image.tmdb.org/t/p/w500${imageSrc}`} 
+              alt={title} 
+            />
+            : 
+            <img 
+              className="w-full h-full object-cover" 
+              src="/No-Poster-Card.png" 
+              alt={title} 
+            />
+          }
+        </div>
         
-        <div className="flex flex-col flex-1 w-full px-2 sm:px-3 md:px-4 pt-2 pb-3 min-h-0">
-          <h2 className="text-[14px] sm:text-[16px] md:text-[18px] line-clamp-2 leading-tight">{title}</h2>
-          <p className="text-gray-600 mt-1 text-[12px] sm:text-[14px]">{year}</p>
+        {/* Content area with flexible height */}
+        <div className="flex flex-col flex-1 w-full px-3 sm:px-4 pt-2 sm:pt-3 pb-3 sm:pb-4 min-h-[120px] sm:min-h-[140px]">
+          <h2 className="text-sm sm:text-base md:text-lg font-medium line-clamp-3 leading-snug grow">{title}</h2>
+          <p className="text-gray-400 mt-1 text-xs sm:text-sm">{year}</p>
           
-          <div className="flex mt-auto w-full justify-between items-center">
-            <div>{rating && <span className="text-yellow-100 text-[12px] sm:text-[14px] md:text-base"><span className="opacity-90">⭐</span> {rating.toFixed(1)}</span>}</div>
+          <div className="flex mt-2 w-full justify-between items-center">
+            <div>
+              {rating ? (
+                <span className="text-yellow-400 text-xs sm:text-sm font-medium">⭐ {rating.toFixed(1)}</span>
+              ) : (
+                <span className="text-gray-500 text-xs">No rating</span>
+              )}
+            </div>
 
-            <button type="button"
-              className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center"
-              onClick={(e) => { e.stopPropagation(); setLiked(!liked); }}>
-              {liked ? <img src={full_heart} className="w-full h-full"
-              alt="Remove from favorites" /> 
-              : <img src={heart} className="w-full h-full" alt="Add to favorites" />}
+            <button 
+              type="button"
+              className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center transition-transform hover:scale-110"
+              onClick={(e) => { e.stopPropagation(); if (onToggleLike) onToggleLike(id); }}
+              aria-pressed={isLiked}
+            >
+              {isLiked ? 
+                <img src={full_heart} className="w-full h-full" alt="Remove from favorites" /> 
+                : 
+                <img src={heart} className="w-full h-full" alt="Add to favorites" />
+              }
             </button>
           </div>
         </div>

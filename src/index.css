@@ -17,13 +17,38 @@
   margin: 0 auto;
   margin-bottom: 4rem;
   text-align: center;
-  
+  ;
 
   /*Variables*/
   --color-primary: hsl(248, 100%, 4%);
-  --color-secondary: hsl(248, 52%, 10%);
+  --color-secondary: hsl(248, 52%, 13%);
+  --color-icon: hsl(257, 100%, 77%);
   --text-primary: hsl(0, 0%, 87%);
   --text-secondary: hsl(0, 0%, 60%);
+  --color-border: hsl(243, 8%, 52%);
+}
+
+/* Corner decoration animations */
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+  }
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 4s ease-in-out infinite;
+}
+
+/* hide scrollbar but keep scrolling */
+.hide-scrollbar {
+  -ms-overflow-style: none;    
+  scrollbar-width: none;       
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;              
 }
 
 

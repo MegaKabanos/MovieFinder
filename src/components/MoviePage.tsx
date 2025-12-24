@@ -55,7 +55,7 @@ const MoviePage = ({ movieId, onClose }: MoviePageProps) => {
   return (
     // Modal backdrop
     <div 
-      className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-2 sm:p-4"
+      className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-2 sm:p-4"
       onClick={onClose}
     >
       {/* Modal content */}
@@ -86,15 +86,15 @@ const MoviePage = ({ movieId, onClose }: MoviePageProps) => {
           </div>
         ) : (
           <div className="p-4 sm:p-6">
-            <div className="flex flex-col md:flex-row gap-4 sm:gap-6">
+            <div className="flex flex-col items-center md:flex-row gap-4 sm:gap-6">
               {movie.poster_path ? (
-                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className="w-full md:w-64 rounded-lg shadow" />
+                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} className="w-38 sm:w-48 md:w-64 rounded-lg shadow" />
               ) : (
                 <div className="w-full md:w-64 h-80 sm:h-96 bg-gray-800 rounded-lg flex items-center justify-center text-sm sm:text-base">No image</div>
               )}
 
               <div className="flex-1">
-                <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white pr-8 sm:pr-0">{movie.title} {year && <span className="text-gray-400 text-base sm:text-lg">({year})</span>}</h1>
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white pr-8 leading-snug sm:pr-0">{movie.title} {year && <span className="text-gray-400 text-base sm:text-lg">({year})</span>}</h1>
                 <div className="mt-2 text-xs sm:text-sm text-gray-300">{movie.runtime ? `${movie.runtime} min` : null} {movie.vote_average ? <span className="ml-2">⭐ {movie.vote_average.toFixed(1)}</span> : null}</div>
 
                 {movie.genres && movie.genres.length > 0 && (
