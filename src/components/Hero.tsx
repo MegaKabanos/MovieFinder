@@ -28,7 +28,7 @@ const Hero = ({title, onImageClick}: HeroProps) => {
       {title}
       <img 
         className="object-cover w-100 cursor-pointer hover:scale-105 transition-transform" 
-        src="/MovieFinder/public/hero-img.png" 
+        src="/MovieFinder/hero-img.png" 
         alt="hero-img"
         onClick={onImageClick}
         onMouseMove={handleMouseMove}
