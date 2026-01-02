@@ -28,9 +28,6 @@ const App = () => {
   release_date?: string;
   vote_average?: number;
 };
-
-
-  
   const [searchTerm, setSearchTerm] = useState('');
   const [movies, setMovies] = useState<Movie[]>([]);
   const [searchResults, setSearchResults] = useState<Movie[]>([]);
@@ -267,7 +264,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen">
-        {/* Favorites toggle button (fixed) */}
+        {/* Favorites toggle button */}
   <div className="fixed top-4 right-4 z-50">
     <button
       type="button"
@@ -279,10 +276,10 @@ const App = () => {
     </button>
   </div>
 
-  {/* Genre Sidebar */}
+  {/* Genre Sidebar*/}
   <GenreFilter selectedGenre={selectedGenre} onGenreChange={setSelectedGenre} onToggleCollapse={setSidebarCollapsed} />
       
-      {/* Main Content (offset to the right of the fixed sidebar) */}
+      {/* Main Content*/}
   <div className="">
         <Hero 
           title={<>Find Your Next<span className='text-gradient sm:text-7xl text-5xl'>Favorite Movie</span></>}
