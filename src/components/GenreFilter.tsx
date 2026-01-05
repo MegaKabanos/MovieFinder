@@ -56,7 +56,7 @@ const GenreFilter = ({ selectedGenre, onGenreChange, onToggleCollapse }: GenreFi
     <>
       {/* Backdrop (kept in DOM so opacity can transition) */}
       <div
-        className={`fixed inset-0 bg-black/90 z-30 lg:hidden transition-all duration-300 ${isCollapsed ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        className={`fixed inset-0 bg-black/90 z-30 transition-all duration-300 ${isCollapsed ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
         onClick={toggleCollapse}
       />
 
