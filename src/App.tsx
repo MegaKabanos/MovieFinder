@@ -28,6 +28,9 @@ const App = () => {
   release_date?: string;
   vote_average?: number;
 };
+
+
+  
   const [searchTerm, setSearchTerm] = useState('');
   const [movies, setMovies] = useState<Movie[]>([]);
   const [searchResults, setSearchResults] = useState<Movie[]>([]);
@@ -264,22 +267,22 @@ const App = () => {
 
   return (
     <div className="min-h-screen">
-        {/* Favorites toggle button */}
+        {/* Favorites toggle button (fixed) */}
   <div className="fixed top-4 right-4 z-50">
     <button
       type="button"
       onClick={() => setShowFavorites(s => !s)}
-      className="flex items-center gap-2 px-3 py-2 bg-[var(--color-secondary)] text-white rounded-lg shadow hover:opacity-90"
+      className="flex items-center gap-2 px-3 py-2 bg-(--color-secondary) text-white rounded-lg shadow hover:opacity-90"
     >
       <img src={fullHeart} className="w-5 h-5" alt="favorites" />
       <span className="text-sm">Favorites ({favorites.length})</span>
     </button>
   </div>
 
-  {/* Genre Sidebar*/}
+  {/* Genre Sidebar */}
   <GenreFilter selectedGenre={selectedGenre} onGenreChange={setSelectedGenre} onToggleCollapse={setSidebarCollapsed} />
       
-      {/* Main Content*/}
+      {/* Main Content (offset to the right of the fixed sidebar) */}
   <div className="">
         <Hero 
           title={<>Find Your Next<span className='text-gradient sm:text-7xl text-5xl'>Favorite Movie</span></>}
@@ -343,14 +346,15 @@ const App = () => {
         ) : (
           <>
             <div className='mx-auto justify-items-center sm:max-w-6xl px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-2 md:gap-4 lg:gap-6'>
-              {displayMovies.map(movie => (
+              {displayMovies.map((movie, idx) => (
                 <div
                   key={movie.id}
                   role="button"
                   tabIndex={0}
                   onClick={() => setSelectedMovieId(movie.id)}
                   onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSelectedMovieId(movie.id) }}
-                  className="cursor-pointer w-[200px] sm:w-auto hover:scale-[1.01] transition-transform"
+                  className="cursor-pointer w-[200px] sm:w-auto hover:scale-[1.01] transition-transform animate-card-enter"
+                  style={{ animationDelay: `${idx * 80}ms` }}
                 >
                   <Card
                     id={movie.id}

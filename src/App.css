@@ -163,3 +163,27 @@
     display: none;
   }
 }
+
+/* Card entrance animation */
+@keyframes card-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.995);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.002);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-card-enter {
+  animation-name: card-enter;
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(.22,.9,.35,1);
+  animation-fill-mode: both;
+  will-change: transform, opacity;
+}

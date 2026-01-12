@@ -56,7 +56,7 @@ const GenreFilter = ({ selectedGenre, onGenreChange, onToggleCollapse }: GenreFi
     <>
       {/* Backdrop (kept in DOM so opacity can transition) */}
       <div
-        className={`fixed inset-0 bg-black/90 z-30 transition-all duration-300 ${isCollapsed ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        className={`fixed inset-0 bg-black/90 z-30  transition-all duration-300 ${isCollapsed ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
         onClick={toggleCollapse}
       />
 
@@ -73,7 +73,7 @@ const GenreFilter = ({ selectedGenre, onGenreChange, onToggleCollapse }: GenreFi
             <div className="space-y-2">
               {/* All Genres Option */}
               <button
-                onClick={() => handleSelect(null)}
+                onClick={() => {handleSelect(null); toggleCollapse();}}
                 className={`w-full text-left text-sm px-2 py-1.5 rounded-lg transition-colors flex items-center gap-2 ${
                   selectedGenre === null
                     ? 'bg-purple-600 text-white font-semibold' 
@@ -87,7 +87,7 @@ const GenreFilter = ({ selectedGenre, onGenreChange, onToggleCollapse }: GenreFi
               {genres.map((genre) => (
                 <button
                   key={genre.id}
-                  onClick={() => handleSelect(genre.id)}
+                  onClick={() => {handleSelect(genre.id); toggleCollapse();}}
                   className={`w-full text-left text-sm px-2 py-1.5 rounded-lg transition-colors flex items-center gap-2 ${
                     selectedGenre === genre.id
                       ? 'bg-purple-600 text-white font-semibold' 
