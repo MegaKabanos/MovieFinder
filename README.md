@@ -1,73 +1,80 @@
-# React + TypeScript + Vite
+# 🎬 MovieFinder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance movie discovery application built with **React 19**, **TypeScript**, and **Vite**. This project allows users to browse popular films, search for specific titles using the TMDB API, and manage a personalized favorites list.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+* **Real-time Search:** Interactive search bar with debounced input and a preview dropdown to find movies instantly.
+* **Dynamic Filtering:** Filter movies by genre using a dedicated sidebar navigation.
+* **Advanced Sorting:** Organize results by popularity, rating, release year, or title.
+* **Favorites System:** Save movies to a local "Favorites" list that persists across browser sessions using `localStorage`.
+* **Infinite Loading:** "Show More" functionality to fetch and display additional movies dynamically.
+* **Responsive UI:** Fully responsive design built with **Tailwind CSS 4** for seamless viewing on mobile and desktop.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Category | Technology |
+| :--- | :--- |
+| **Framework** | React 19 (TypeScript) |
+| **Build Tool** | Vite 7 |
+| **Styling** | Tailwind CSS 4 |
+| **State/Hooks** | `react-use` (for debouncing) |
+| **Data Source** | TMDB (The Movie Database) API |
+| **Deployment** | GitHub Pages |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📦 Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Prerequisites
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+* **Node.js** (v18.0 or higher)
+* **npm** or **yarn**
+* A **TMDB API Key** (Get one at [themoviedb.org](https://www.themoviedb.org/documentation/api))
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Installation
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/MegaKabanos/MovieFinder.git](https://github.com/MegaKabanos/MovieFinder.git)
+    cd MovieFinder
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Configure Environment Variables:**
+    Create a `.env` file in the root directory and add your API key:
+    ```env
+    VITE_TMDB_API_KEY=your_api_key_here
+    ```
+
+4.  **Start the development server:**
+    ```bash
+    npm run dev
+    ```
+
+---
+
+## 🔧 Available Scripts
+
+* `npm run dev`: Start the local development server.
+* `npm run build`: Build the application for production.
+* `npm run deploy`: Build and deploy the project to GitHub Pages.
+* `npm run lint`: Run ESLint to identify code quality issues.
+
+---
+
+## 🔑 Security Note
+
+This project uses an external API. Ensure your `.env` file is never committed to version control to protect your `VITE_TMDB_API_KEY`.
+
+---
+
+**Author:** [MegaKabanos](https://github.com/MegaKabanos)
